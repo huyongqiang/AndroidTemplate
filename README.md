@@ -44,7 +44,7 @@
 
 * 常用自定义View：圆形ImageView，验证码点击倒计时View，带清除按钮的EditText，等等
 
-* 代码注释规范：代码严格按照谷歌级规范来做，如需寻找友盟相关的代码，全局搜索 "友盟" 即可，任何一处不关于原生的 API 都有非常完善的注释
+* 代码注释规范：代码严格按照谷歌级规范来做，同时依据《阿里巴巴开发手册Android1_0_0》，任何一处不关于原生的 API 都有非常完善的注释
 
 项目规划
 
@@ -73,4 +73,4 @@
 
 #### 当然要是还想进一步表示可以扫描下方的二维码随意打赏，要是能打赏个 10.24 :monkey_face:就太:thumbsup:了。您的支持将鼓励我继续创作:octocat:
 
-![](https://github.com/peihp/AndroidTemplate/picture/pay_ali.png) ![](https://github.com/peihp/AndroidTemplate/picture/pay_wechat.png)
+![](https://github.com/peihp/AndroidTemplate/picture/pay_ali.jpg) ![](https://github.com/peihp/AndroidTemplate/picture/pay_wechat.png)
