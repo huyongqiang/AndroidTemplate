@@ -73,4 +73,4 @@
 
 #### 当然要是还想进一步表示可以扫描下方的二维码随意打赏，要是能打赏个 10.24 :monkey_face:就太:thumbsup:了。您的支持将鼓励我继续创作:octocat:
 
-![](https://github.com/peihp/AndroidTemplate/picture/pay_ali.jpg) ![](https://github.com/peihp/AndroidTemplate/picture/pay_wechat.png)
+![](https://github.com/peihp/AndroidTemplate/tree/master/AndroidTemplateProject/picture/pay_ali.jpg) ![](https://github.com/peihp/AndroidTemplate/tree/master/AndroidTemplateProject/picture/pay_wechat.png)
