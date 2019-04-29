@@ -42,13 +42,35 @@
 
 * 界面样式规范：项目的严格按照 Material Design 设计进行配色，统一和规范Button和EditText控件样式
 
-* 常用自定义View：圆形ImageView，验证码点击倒计时View，带清除按钮的EditText，正方形的FrameLayout、LinearLayout、RelativeLayout、ImageView
+* 常用自定义View：圆形ImageView，验证码点击倒计时View，带清除按钮的EditText，等等
 
 * 代码注释规范：代码严格按照谷歌级规范来做，如需寻找友盟相关的代码，全局搜索 "友盟" 即可，任何一处不关于原生的 API 都有非常完善的注释
 
+项目规划
 
+* 图片、视频轮播
+* 集成下拉上拉加载刷新框架
+* 网易、滴滴左右导航滑动，下拉菜单
+* 科大讯飞/百度语音合成/识别
+* 高德地图导航、定位
+* 美团淘宝点餐、支付
+* 人脸、指纹识别
+* 电子签名
+* 第三方授权登录
+* QQ侧滑导航
+* 消息通知
+* 二维码生成与识别
+* 第三方拍照与图片裁剪
+* 图片无损极限压缩
+* H5/js交互、pdf、图片显示
+* 各类加密算法库
+* 数据处理、文件读写等等各类工具库
+……
 
-#### 如果您觉得我的开源库帮你节省了大量的开发时间，请扫描下方的二维码随意打赏，要是能打赏个 10.24 :monkey_face:就太:thumbsup:了。您的支持将鼓励我继续创作:octocat:
+欢迎各位志同道合的朋友留下您宝贵的意见，在此也将整理了些往年收集的相关android/linux/c++/java/嵌入式/程序人生等电子书上传群文件共享，有需要的朋友可自行下载，非常感谢！！（群名称：android进阶   群   号：1020544287）
 
-![](picture/pay_ali.png) ![](picture/pay_wechat.png)
+如果您觉得我的些许辛劳给您节省了大量的开发时间抑或是解决了难题，可以劳烦github帮忙点个star，您的肯定是我无穷的动力。
 
+#### 当然要是还想进一步表示可以扫描下方的二维码随意打赏，要是能打赏个 10.24 :monkey_face:就太:thumbsup:了。您的支持将鼓励我继续创作:octocat:
+
+![](AndroidTemplate/picture/pay_ali.png) ![](AndroidTemplate/picture/pay_wechat.png)
