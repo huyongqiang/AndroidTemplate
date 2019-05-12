@@ -19,6 +19,10 @@ import java.util.Random;
  *    xxx
  *    time   : 2018/10/18
  *    desc   : Activity 基类
+ *    illustration：
+ *    ①处理了个别机型界面重复跳转问题
+ *    ②使用token处理：Handler.postXXX方法必须在Activity销毁的时候移除，如果是单例的Handler，那么当某一个Activity销毁之后，所有的Activity的Handler.postXXX任务都会停止，而我们想要的效果是，哪个Activity销毁了，在这个Activity相应的Handler.postXXX的任务被移除掉就可以了
+ *    此次通过将当前 Activity 作为 token，发送消息回调的时候把这个 token 带上，然后在 Activity 销毁的时候将这个 token 相关的回调移除掉，因为 token 是当前 Activity 对象，所以只会移除当前和这个 Activity 对象相关的回调，从而不会影响其他 Activity 的消息回调
  */
 public abstract class BaseActivity extends AppCompatActivity {
 
@@ -79,6 +83,7 @@ public abstract class BaseActivity extends AppCompatActivity {
 
     /**
      * 在指定的时间执行
+     * 通过查看Handler.postXXX源码得知， token 最终会成为 Message.obj 的成员
      */
     public final boolean postAtTime(Runnable r, long uptimeMillis) {
         return HANDLER.postAtTime(r, this, uptimeMillis);
@@ -88,6 +93,7 @@ public abstract class BaseActivity extends AppCompatActivity {
     protected void onDestroy() {
         super.onDestroy();
         // 移除和这个 Activity 相关的消息回调
+        //通过查看Handler.removeCallbacksAndMessages源码得知，这个token最终会作为参数判断，只有Message.obj 和这个 token 对象是同一个的时候，这个消息回调才会被移除
         HANDLER.removeCallbacksAndMessages(this);
     }
 
@@ -103,6 +109,7 @@ public abstract class BaseActivity extends AppCompatActivity {
 
     /**
      * 获取当前 Activity 对象
+     * 借鉴 findViewById 的思想对 getActivity 方法进行升级改造（具体可看Activity中findViewById)
      */
     @SuppressWarnings("unchecked")
     public <A extends BaseActivity> A getActivity() {
@@ -188,7 +195,7 @@ public abstract class BaseActivity extends AppCompatActivity {
     }
 
     /**
-     * 处理 Activity 多重跳转：https://www.jianshu.com/p/579f1f118161
+     * 处理 Activity 多重跳转
      */
 
     @Override

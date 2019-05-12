@@ -1,6 +1,18 @@
 #### MyActivity
 
-> 所有的 Activity 必须继承至 MyActivity，如果使用 MVP 请继承至 MvpActivity，已经处理了 Activity 多重启动的问题，[详情可点击此处查看](https://www.jianshu.com/p/579f1f118161)
+> 所有的 Activity 必须继承至 MyActivity，如果使用 MVP 请继承至 MvpActivity，已经处理了 Activity 多重启动的问题
+    三个基类
+
+    MyActivity 继承至 UIActivity
+
+    UIActivity 继承至 BaseActivity
+
+    Java 只支持单继承的方式，所以我们最后使用的话还是只是用到了 MyActivity ，至于拆分原因很简单，对不同类型的代码进行抽取隔离，假如 MyActivity、UIActivity、BaseActivity 的代码整合在一起，那么会有 600 行代码，这个时候我们要进行改动的时候会异常困难，查找起来感觉会很崩溃，甚至有可能改动了重要的代码，为自己写Bug挖坑。
+
+    BaseActivity：基类Activity，只涉及纯技术性的代码封装
+    UIActivity：由于项目加入了侧滑和沉浸式，关于这两个的代码都在这里，因为这两块代码比较多，所以单独抽取进行封装
+    MyActivity：项目中其他代码封装（具体表现在业务逻辑这块），比如友盟统计、标题栏监听、第三方框架隔离等等
+
 
 > 获取 Context 或者 Activity
 

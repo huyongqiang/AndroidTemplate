@@ -53,6 +53,7 @@ public class TitleBarTransparentStyle extends BaseTitleBarStyle {
         return 0;
     }
 
+    //创建状态选择器
     @Override
     public Drawable getLeftBackground() {
         return getDrawable(R.drawable.bar_selector_selectable_transparent);

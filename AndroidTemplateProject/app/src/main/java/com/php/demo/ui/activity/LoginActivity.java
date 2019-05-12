@@ -136,6 +136,7 @@ public class LoginActivity extends MyActivity
      *
      * @param platform      平台名称
      * @param data          用户资料返回
+     *                      友盟第三方登录和分享，而分享对话框是自定义的对话框并没有采用官方的，样式极简
      */
     @Override
     public void onSucceed(Platform platform, UmengLogin.LoginData data) {

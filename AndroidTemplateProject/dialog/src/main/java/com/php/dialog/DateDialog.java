@@ -14,6 +14,7 @@ import java.util.Locale;
  *    xxx
  *    time   : 2018/12/17
  *    desc   : 日期选择对话框
+ *    illustration: 日期选择对话框则弹出的时候会默认选择当前今天的日期，自动识别不同年份和月份中的天数
  */
 public final class DateDialog extends AbsLooperDialog {
 

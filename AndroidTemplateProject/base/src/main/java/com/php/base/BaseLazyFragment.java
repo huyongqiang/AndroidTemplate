@@ -21,6 +21,12 @@ import java.util.Random;
  *    xxx
  *    time   : 2018/10/18
  *    desc   : Fragment 懒加载基类
+ *    illustration:
+ *    ①有时候我们看到别人写的Fragment的时候，会先思考这个Fragment到底是哪个Activity里面的，由此我们可以用泛型，可以更直观地看到这个Fragment是属于哪个Activity，Fragment用于多个不同的Activity的时候，这个泛型也可以不用指定。
+ *    ②特色点：在Fragment加了getBindingActivity方法，可自动强转至具体类型的Activity，无需手动进行强转
+ *    ③很多人知道Fragment，但是对懒加载的Fragment了解不是很深刻，何为懒加载，举个例子，单例设计模式中也有一个懒汉式，只有调用的时候才会初始化，懒加载也是基于这种思想，看见的时候才加载网络数据，并且只加载一次，我都知道调用replace方法会导致Fragment再走一次生命周期，这就导致了布局被重新创建和接口数据被重复请求，对用户的体验和应用的性能是极其不好的，我们可以将Fragment的Layout进行缓存，在Fragment重复调用生命周期的时候进行判断，在onCreateView方法中将之前创建过的Layout返回回去，而不是使用布局填充器重复创建
+ *    即：懒加载Fragment的布局只创建了一次，界面数据也只初始化了一次
+ *    谷歌官方只提供了Fragment类，但是并没有实现懒加载机制，此处通过对Fragment的二次封装来实现这一机制
  */
 public abstract class BaseLazyFragment<A extends BaseActivity> extends Fragment {
 

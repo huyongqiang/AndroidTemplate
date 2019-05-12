@@ -50,6 +50,7 @@ public abstract class MyActivity extends UIActivity
         }
 
         mButterKnife = ButterKnife.bind(this);
+        //EventBus在基类中注册，如果基类没有注解的方法的话会报错
         EventBusManager.register(this);
         initOrientation();
     }
@@ -144,7 +145,6 @@ public abstract class MyActivity extends UIActivity
     }
 
     public void toast(@StringRes int id) {
-        // https://github.com/getActivity/ToastUtils/issues/31
         ToastUtils.show(getString(id));
     }
 

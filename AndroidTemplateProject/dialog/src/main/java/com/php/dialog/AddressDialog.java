@@ -33,9 +33,12 @@ import java.util.List;
 /**
  *    author : xxx
  *    xxx
- *    time   : 2019/02/12
+ *    time   : 2019/05/12
  *    desc   : 省市区选择对话框
- *    doc    : https://baijiahao.baidu.com/s?id=1615894776741007967
+ *    illustration    :
+ *    ①网上别人这种三级联动的对话框，加载会非常消耗内存，省市区的数据文件是100K，一次解析会产生数以万计的对象，
+ *    所以特别进行了优化，不会全部解析出来，选择后的时候才会进行下一级列表的解析，见dialog模块的province.json文件
+ *    ②特别处理：省市区对话框如果选择的省份是直辖市会直接跳到县级区域，会直接跳过选择城市。
  */
 public final class AddressDialog {
 
@@ -386,6 +389,7 @@ public final class AddressDialog {
 
     /**
      * 省市区读取工具类
+     * 刚开始的时候只解析省份，选择省份之后对下一级的Json再进行解析，看见的部分会解析，没看到的数据不会被解析，只是把看不见的数据当成一个JsonObject（也可以理解成一个String）
      */
     private static final class ProvinceUtils {
 
@@ -394,7 +398,6 @@ public final class AddressDialog {
          */
         private static List<AddressBean> getProvinceList(Context context) {
             try {
-                // 省市区Json数据文件来源：https://github.com/getActivity/ProvinceJson
                 JSONArray jsonArray = new JSONArray(getAssetsString(context, "province.json"));
 
                 int length = jsonArray.length();
