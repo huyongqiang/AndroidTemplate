@@ -16,6 +16,7 @@ import android.support.v4.app.FragmentTransaction;
  *    xxx
  *    time   : 2018/11/24
  *    desc   : DialogFragment 基类
+ *
  */
 public class BaseDialogFragment extends DialogFragment {
 

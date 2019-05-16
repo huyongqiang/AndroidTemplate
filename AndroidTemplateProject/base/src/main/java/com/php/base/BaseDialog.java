@@ -36,6 +36,18 @@ import java.util.List;
  *    xxx
  *    time   : 2018/11/24
  *    desc   : Dialog 基类
+ *    illustration:
+ *         代码的摆放和顺序都是经过特殊处理的，摆放是通过代码类型，监听器的代码放一起，设置监听的方法放一起，添加监听的方法放一起;
+ *         顺序是通过代码的执行顺序进行摆放的，比如Dialog的三个监听器，最先回调是显示监听，再者是取消监听，最后才是销毁监听
+*    problem  illustratiion:
+ *    使用DialogFragment之后出现的一个问题，就是原先给Dialog设置的取消监听和销毁监听失效了，而单单使用Dialog却没有任何问题
+*      原来DialogFragment的生命周期方法onActivityCreated重新给Dialog设置了取消监听和销毁监听，所以才会导致我们给Dialog设置的监听无效
+*       DialogFragment其实占用Dialog的监听并非无用，而是通过监听Dialog的销毁从而将自己从Activity中剔除掉
+*      那么我们需要考虑既能不破坏DialogFragment的监听，也不影响我们对Dialog的监听，怎么做呢？
+*   本处觉得还不错的方法是修改Dialog原有的监听规则：
+*       观察者设计模式分为两种，一种是一对一（一个被观察者对应着一个观察者），一种一对多，而Dialog的设置监听正是采用了一对一的模式，这样会导致一个问题，监听器对象只能有一个，而一对多正好解决了这个问题
+*       那么为什么可以用一对多这种模式呢？什么情况下就不能用呢？如果这个监听器采用了责任链的设计模式，则我们不能用一对多，只能使用一对一，因为责任链模式一般都会通过监听器的方法返回值来决定是否回调下一个监听器对象，
+*       如果上一个监听器拦截了，那么下个监听器就接收不到了，这个时候就必须要使用一对一。而刚好我们刚刚讲的Dialog的两个监听器的方法都不需要返回值，所以我们可以对它们进行改造
  */
 public class BaseDialog extends AppCompatDialog implements
         DialogInterface.OnShowListener,
@@ -73,6 +85,9 @@ public class BaseDialog extends AppCompatDialog implements
      *
      * @param listener       监听器对象
      * @deprecated          请使用 {@link #addOnCancelListener(BaseDialog.OnCancelListener)}
+     * illustration :
+     * 使用了外观设计模式，可以在不改变父类方法的参数类型前提下，使用包装类对原有的接口进行回调，在不破坏方法的参数类型情况下对类型进行转换
+     *
      */
     @Deprecated
     @Override
@@ -96,6 +111,7 @@ public class BaseDialog extends AppCompatDialog implements
      * 添加一个取消监听器
      *
      * @param listener      监听器对象
+     *
      */
     public void addOnShowListener(@Nullable BaseDialog.OnShowListener listener) {
         if (mOnShowListeners == null) {
@@ -157,6 +173,10 @@ public class BaseDialog extends AppCompatDialog implements
 
     /**
      * {@link DialogInterface.OnShowListener}
+     *
+     * illustration:
+     *      Dialog的监听器从观察者一对一改造成了一对多(其他监听器同理)，在原先的一对一的方法上直接回调一对多的方法，
+     *      然后在回调方法的里面再去调所有的监听对象，这样我们再不用担心DialogFragment占用Dialog原有的监听器了，因为它现在支持设置多个监听器对象
      */
     @Override
     public void onShow(DialogInterface dialog) {
@@ -708,6 +728,12 @@ public class BaseDialog extends AppCompatDialog implements
         }
     }
 
+    /*
+    *    illustration:
+    *    DialogInterface接口方法的对象不是Dialog类型，而是DialogInterface类型
+    *    此次不想要方法参数是DialogInterface类型，而是用BaseDialog，所以重新定义接口修改参数类型
+    *    但是会在Dialog监听的方法报类型转换异常，该异常使用外观设计模式包装类解决
+     */
     public interface OnClickListener<V extends View> {
         void onClick(BaseDialog dialog, V view);
     }

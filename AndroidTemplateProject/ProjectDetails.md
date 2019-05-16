@@ -58,17 +58,10 @@
 
 > 具体用法可以[点击此处查看示例](app/src/main/java/com/php/demo/ui/fragment/TestFragmentC.java)
 
-![](picture/3.png)
 
 ## 友盟多渠道打包
 
 > 具体配置可以[点击此处查看](app/build.gradle)
-
-![](picture/flavors_1.jpg)
-
-![](picture/flavors_2.jpg)
-
-![](picture/flavors_3.jpg)
 
 > 使用友盟多渠道统计时需要[更换清单文件中的key](app/src/main/AndroidManifest.xml)
 
